@@ -1,11 +1,11 @@
 
 import './App.css';
-import { Objects } from './components/Objects';
+import { Recipes } from './components/Recipes';
 
 function App() {
   return (
     <div className="App">
-      <Objects/>
+      <Recipes/>
     </div>
   );
 }
