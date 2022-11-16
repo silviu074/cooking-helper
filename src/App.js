@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import {
+  BrowserRouter,
+  Route,
+  Routes
+} from "react-router-dom";
 import axios from 'axios';
 import './App.css';
 import { Test } from './components/Test';
 import { MainPage } from './pages/MainPage';
+import { Recipes } from './pages/Recipes';
+import { EasyRecipes } from './pages/EasyRecipes';
+import { Leftovers } from './pages/Leftovers';
 
 function App() {
 
@@ -73,10 +81,16 @@ function App() {
 
 
   return (
-    <div className="App">
-      <Test recipes={recipes} ingredients={ingredients} categories={categories} area={area}/>
-      <MainPage recipes={recipes}/>
-    </div>
+    <React.Fragment>
+      <BrowserRouter>
+       <Routes>
+        <Route path="/" exact element={<MainPage recipes={recipes}/>} />
+        <Route path="/all-recipes" exact element={ <Recipes/> }/>
+        <Route path="/leftovers" exact element={ <Leftovers/> }/>
+        <Route path="/easy-recipes" exact element={ <EasyRecipes/> }/>
+       </Routes>
+      </BrowserRouter>
+    </React.Fragment>
   );
 }
 
