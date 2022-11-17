@@ -16,9 +16,9 @@ export const Navbar = () => {
         <h3>Cooking helper</h3>
         <nav ref={navRef}>
             <a href="/">Home</a>
-            <a href="/">All Recipes</a>
-            <a href="/">Easy Recipes</a>
-            <a href="/">Leftovers</a>
+            <a href="/all-recipes">All Recipes</a>
+            <a href="/easy-recipes">Easy Recipes</a>
+            <a href="/leftovers">Leftovers</a>
             <button
 				className="nav-btn nav-close-btn"
 				onClick={showNavbar}>

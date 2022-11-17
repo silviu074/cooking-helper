@@ -6,9 +6,7 @@ import {
 } from "react-router-dom";
 import axios from 'axios';
 import './App.css';
-import { Test } from './components/Test';
 import { MainPage } from './pages/MainPage';
-import { Recipes } from './pages/Recipes';
 import { EasyRecipes } from './pages/EasyRecipes';
 import { Leftovers } from './pages/Leftovers';
 
@@ -66,15 +64,15 @@ function App() {
   
     //  Area
   
-    const [area, setArea] = useState([])
+    const [areas, setAreas] = useState([])
   
     useEffect( () => {
       axios.get('https://www.themealdb.com/api/json/v1/1/list.php?a=list')
         .then(response => {
-            setArea(response.data.meals)
+            setAreas(response.data.meals)
         })
         .catch(err => {
-            setArea([])
+            setAreas([])
             console.log(err)
         })
     }, []) 
@@ -84,8 +82,7 @@ function App() {
     <React.Fragment>
       <BrowserRouter>
        <Routes>
-        <Route path="/" exact element={<MainPage recipes={recipes}/>} />
-        <Route path="/all-recipes" exact element={ <Recipes/> }/>
+        <Route path="/" exact element={<MainPage recipes={recipes} areas={areas} categories={categories}/>} />
         <Route path="/leftovers" exact element={ <Leftovers/> }/>
         <Route path="/easy-recipes" exact element={ <EasyRecipes/> }/>
        </Routes>
