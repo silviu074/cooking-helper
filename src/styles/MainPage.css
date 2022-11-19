@@ -1,3 +1,21 @@
+
+
 .areaSelector{
     color:red;
+}
+
+.categoryRecipesToRender, .areaRecipesToRender{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.label{
+    margin-top: min(5%, 20px);
+    border:2px solid blue;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
 }

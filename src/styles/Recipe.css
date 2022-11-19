@@ -1,0 +1,41 @@
+.render{
+    width:20%;
+    margin:5% auto 0 auto;
+    border:2px solid red;
+    padding:1%;
+    overflow: hidden;
+}
+
+.img{
+    width: min(300px, 80%);
+}
+
+.popup-button{
+    display: block;
+}
+
+.popup .overlay{
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+}
+
+.overlay {
+    background: rgba(49,49,49,0.8);
+}
+
+.popup-content{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #f1f1f1;
+    padding: 14px 28px;
+    border-radius: 10px;
+    max-width: 60%;
+    min-width: 60%;
+}

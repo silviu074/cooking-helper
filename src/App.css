@@ -1,0 +1,12 @@
+/*--------------------------------- Removing lateral scroll on mobile ---------------------------------*/
+
+html, body {
+    overflow-x: hidden;
+    font-family: -apple-system,BlinkMacSystemFont,"Apple Color Emoji","SF Pro","SF Pro Icons",
+    "Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+
+  
+body {
+    position: relative
+  }

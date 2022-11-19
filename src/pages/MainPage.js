@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { Navbar } from '../components/Navbar'
 import "../styles/MainPage.css"
+import { Recipe } from '../components/Recipe'
 
 export const MainPage = ({recipes, areas, categories}) => {
 
-  const [areaToRender, setAreaToRender] = useState()
-  const [categoryToRender, setCategoryToRender] = useState()
+  const [areaToRender, setAreaToRender] = useState([])
+  const [categoryToRender, setCategoryToRender] = useState([])
 
 
   // Area selection and render
@@ -17,16 +18,13 @@ export const MainPage = ({recipes, areas, categories}) => {
   })
 
   let areaRecipesToRender = recipes.map( (recipe, index) => {
+    if((areaToRender === 'all') && (typeof(recipe) != 'undefined'))
+    return(
+      <Recipe index={index} recipe={recipe}/>
+    )
     if(areaToRender === recipe?.strArea)
     return(
-        <div key={index}>
-            <p>{recipe?.strMeal}</p>
-            <p>{recipe?.strCategory}</p>
-            <p>{recipe?.strArea}</p>
-            <p>{recipe?.strInstructions}</p>
-            <p>{recipe?.strMealThumb}</p>
-            <p>{recipe?.strYoutube}</p><br/><br/><br/><br/><br/>
-        </div>
+      <Recipe index={index} recipe={recipe}/>
     )
   })
 
@@ -42,14 +40,7 @@ export const MainPage = ({recipes, areas, categories}) => {
   let categoryRecipesToRender = recipes.map( (recipe, index) => {
     if(categoryToRender === recipe?.strCategory)
     return(
-        <div key={index}>
-            <p>{recipe?.strMeal}</p>
-            <p>{recipe?.strCategory}</p>
-            <p>{recipe?.strArea}</p>
-            <p>{recipe?.strInstructions}</p>
-            <p>{recipe?.strMealThumb}</p>
-            <p>{recipe?.strYoutube}</p><br/><br/><br/><br/><br/>
-        </div>
+        <Recipe index={index} recipe={recipe}/>
     )
   })
 
@@ -58,19 +49,28 @@ export const MainPage = ({recipes, areas, categories}) => {
   return (
     <React.Fragment>
       <Navbar/>
+
+    {/* AREA */}
+
       <div className='areaSelector'>
-      <label>Choose area:</label>
+      <label className='label'>Recipe origin:</label>
         <select onChange={(e) => {
           const areaValue = e.target.value
           setAreaToRender(areaValue)
         }}>
           <option value='null'>Select here</option>
+          <option value='all'>All recipes</option>
           {areaSelector}
         </select>
       </div>
+      <div className='areaRecipesToRender'>
+     {areaRecipesToRender}
+     </div>
+
+    {/* CATEGORY */}
 
       <div className='categorySelector'>
-      <label>Choose category:</label>
+      <label className='label'>Type of dish:</label>
         <select onChange={(e) => {
           const categoryValue = e.target.value
           setCategoryToRender(categoryValue)
@@ -79,11 +79,8 @@ export const MainPage = ({recipes, areas, categories}) => {
           {categorySelector}
         </select>
       </div>
-  
-
-    <div>
-        {areaRecipesToRender}
-        {categoryRecipesToRender}
+    <div className='categoryRecipesToRender'>
+      {categoryRecipesToRender}
     </div>
     </React.Fragment>
   )
