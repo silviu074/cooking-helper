@@ -1,3 +1,7 @@
+#root { 
+    --dark-gray: rgb(24, 24, 24);
+}
+
 .render{
     width:20%;
     margin:5% auto 0 auto;
@@ -8,6 +12,7 @@
 
 .img{
     width: min(300px, 80%);
+    display: inline-block;
 }
 
 .popup-button{
@@ -33,17 +38,40 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #f1f1f1;
+    background: var(--dark-gray);
+    text-align: center;
+    color: white;
     padding: 14px 28px;
     border-radius: 10px;
     width: 70%;
+    z-index: 2;
+    overflow-y: scroll;
+    max-height: 90%;
 }
 
 .ingredientImage{
-    max-width: 25px;
+    max-width: 100px;
 }
 
 .generatedIngredients{
     display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
     margin: auto;
+    display: inline-block;
+    width: 33%;
+}
+
+.popup-part1{
+    width:40%;
+}
+
+.popup-part2{
+    display: flex;
+}
+
+.padding-top-bot-5{
+    padding-top: 5%;
+    padding-bottom: 5%;
 }

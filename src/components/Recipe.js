@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import YouTube from 'react-youtube'
 import "../styles/Recipe.css"
 
 export const Recipe = ({index,recipe}) => {
@@ -14,9 +15,10 @@ export const Recipe = ({index,recipe}) => {
     // Returning the image for an ingredient
 
     function ingredientImageRender(ingredientsImage, i){
-        let j = eval(`recipe.strIngredient${i}`)
-        if((j !== "") && (j !== 'null')) {
-            let textToSrc = j.replace(" ","%20")
+        let ingredientText = eval(`recipe.strIngredient${i}`)
+        if((ingredientText !== "") && (ingredientText !== " ") && (ingredientText !== null) ) {
+            console.log(ingredientText)
+            let textToSrc = ingredientText.replace(" ","%20")
             ingredientsImage[i] = `https://www.themealdb.com/images/ingredients/${textToSrc}.png`
             console.log(ingredientsImage[i])
             return (<img 
@@ -30,7 +32,7 @@ export const Recipe = ({index,recipe}) => {
 
     function ingredientTextRender(ingredientsText, i){
         let ingredientText = eval(`recipe.strIngredient${i}`)
-            if((ingredientText !== "") && (ingredientText !== 'null')) {
+            if((ingredientText !== "") && (ingredientText !== " ") && (ingredientText !== null)) {
                 ingredientsText[i] = ingredientText
                 console.log(ingredientsText[i])
                 return (<p>{ingredientsText[i]}</p>)
@@ -41,10 +43,10 @@ export const Recipe = ({index,recipe}) => {
 
     function measureTextRender(measuresText, i){
         let measureText = eval(`recipe.strMeasure${i}`)
-        if((measureText !== "") && (measureText !== 'null')){
+        if((measureText !== "") && (measureText !== " ") && (measureText !== 'null') ){
             measuresText[i] = measureText
             console.log(measuresText[i])
-            return (<p>{measuresText[i]}</p>)
+            return (<p>{measuresText[i]} of</p>)
         }
     }
 
@@ -59,24 +61,42 @@ export const Recipe = ({index,recipe}) => {
         generateIngredients[i] =
             <div key={i} className='generatedIngredients'>
             {ingredientImageRender(ingredientsImage, i)}
-            {ingredientTextRender(ingredientsText, i)}
             {measureTextRender(measuresText, i)}
+            {ingredientTextRender(ingredientsText, i)}
             </div>
     }
 
-    
+    // Extracting the ID from a youtube link and preparing the youtube-react component to render
+
+    const youtubeID = recipe?.strYoutube.split("=")[1]
+    console.log(recipe?.strYoutube)
+    console.log(youtubeID)
+
+    const opts = {
+        height: '400',
+        width: '100%',
+        playerVars: {
+          // https://developers.google.com/youtube/player_parameters
+          autoplay: 0,
+        },
+      };
+
+    // Preparing the description of the recipe
+
+    const description = recipe?.strInstructions
+    console.log(recipe?.idMeal)
+
+    // Page rendering
 
   return (
     <div key={index} className='render'>
-            <h2>{recipe?.strMeal}</h2>
+            <h1>{recipe?.strMeal}</h1>
             <p>Type of dish: {recipe?.strCategory}</p>
             <p>Recipe origin: {recipe?.strArea}</p>
-            {/* <p>{recipe?.strInstructions}</p> */}
             <img 
                 className='img' 
                 src={recipe?.strMealThumb} 
                 alt={recipe?.strMealThumb}></img>
-            {/* <p>{recipe?.strYoutube}</p> */}
             <button className='popup-button' onClick={togglePopup}>See recipe</button>
             {popup && (
                 <div className='popup' >
@@ -88,12 +108,19 @@ export const Recipe = ({index,recipe}) => {
                         <img 
                             className='img' 
                             src={recipe?.strMealThumb} 
-                            alt="{recipe?.strMealThumb}"></img>
-                        <p>Ingredients:</p>
-
+                            alt={recipe?.strMealThumb}>
+                        </img>
+                        <h3 className='padding-top-bot-5'>Ingredients:</h3>
+                        <div className='popup-part2'>
                         <div className='ingredients'>
-                        {generateIngredients} <br/>
+                        {generateIngredients}
                         </div>
+                    </div>
+                    <h3>Instructions:</h3>
+                    {/* style={{whiteSpace: "pre-wrap"}} transforms /n/r from string to readable html */}
+                    <p style={{whiteSpace: "pre-wrap"}}>{description}</p> 
+                    <h3 className='padding-top-bot-5'>Youtube tutorial:</h3>
+                    <YouTube videoId ={youtubeID} opts={opts}/>
                     </div>
                 </div>
             ) }
