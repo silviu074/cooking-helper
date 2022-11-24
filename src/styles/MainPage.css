@@ -1,7 +1,7 @@
 
 
 .areaSelector{
-    color:red;
+    color:white;
 }
 
 .categoryRecipesToRender, .areaRecipesToRender{
@@ -20,3 +20,10 @@
     font-size: x-large;
 }
 
+/* Selector css */
+
+.select{
+    width:300px;
+    height:50px;
+    text-align: center;
+}

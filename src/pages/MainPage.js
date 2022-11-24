@@ -49,12 +49,13 @@ export const MainPage = ({recipes, areas, categories}) => {
   return (
     <React.Fragment>
       <Navbar/>
+      <div className='mainpage-contianer'>
 
     {/* AREA */}
 
       <div className='areaSelector'>
       <label className='label'>Recipe origin:</label>
-        <select onChange={(e) => {
+        <select className='select' onChange={(e) => {
           const areaValue = e.target.value
           setAreaToRender(areaValue)
         }}>
@@ -71,7 +72,7 @@ export const MainPage = ({recipes, areas, categories}) => {
 
       <div className='categorySelector'>
       <label className='label'>Type of dish:</label>
-        <select onChange={(e) => {
+        <select className='select' onChange={(e) => {
           const categoryValue = e.target.value
           setCategoryToRender(categoryValue)
         }}>
@@ -81,6 +82,8 @@ export const MainPage = ({recipes, areas, categories}) => {
       </div>
     <div className='categoryRecipesToRender'>
       {categoryRecipesToRender}
+    </div>
+
     </div>
     </React.Fragment>
   )

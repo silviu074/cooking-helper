@@ -43,7 +43,7 @@ export const Recipe = ({index,recipe}) => {
 
     function measureTextRender(measuresText, i){
         let measureText = eval(`recipe.strMeasure${i}`)
-        if((measureText !== "") && (measureText !== " ") && (measureText !== 'null') ){
+        if((measureText !== "") && (measureText !== " ") && (measureText !== null)){
             measuresText[i] = measureText
             console.log(measuresText[i])
             return (<p>{measuresText[i]} of</p>)
@@ -90,14 +90,16 @@ export const Recipe = ({index,recipe}) => {
 
   return (
     <div key={index} className='render'>
-            <h1>{recipe?.strMeal}</h1>
-            <p>Type of dish: {recipe?.strCategory}</p>
-            <p>Recipe origin: {recipe?.strArea}</p>
+        <div className='recipe-preview'>
+            <h3 className='title'>{recipe?.strMeal}</h3>
+            <p className='subtitle'>Type of dish: {recipe?.strCategory}</p>
+            <p className='subtitle'>Recipe origin: {recipe?.strArea}</p>
             <img 
                 className='img' 
                 src={recipe?.strMealThumb} 
                 alt={recipe?.strMealThumb}></img>
             <button className='popup-button' onClick={togglePopup}>See recipe</button>
+        </div>   
             {popup && (
                 <div className='popup' >
                     <div onClick={togglePopup} className='overlay'></div>
@@ -117,8 +119,7 @@ export const Recipe = ({index,recipe}) => {
                         </div>
                     </div>
                     <h3>Instructions:</h3>
-                    {/* style={{whiteSpace: "pre-wrap"}} transforms /n/r from string to readable html */}
-                    <p style={{whiteSpace: "pre-wrap"}}>{description}</p> 
+                    <p style={{whiteSpace: "pre-wrap"}} className='description'>{description}</p> 
                     <h3 className='padding-top-bot-5'>Youtube tutorial:</h3>
                     <YouTube videoId ={youtubeID} opts={opts}/>
                     </div>
