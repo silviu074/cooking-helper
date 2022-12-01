@@ -13,7 +13,7 @@ export const Navbar = () => {
 
   return (
     <header>
-        <h3>Cooking helper</h3>
+        <h3>Cooking Helper 🍕</h3>
         <nav ref={navRef}>
             <a href="/">Home</a>
             <a href="/leftovers">Leftovers</a>

@@ -9,6 +9,8 @@ html, body {
   
 body {
     position: relative;
+    color:white;
     background-color: black;
-    color:white
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #000000 500px ),
+    repeating-linear-gradient( #ff7300a4, #ff7300 );
   }

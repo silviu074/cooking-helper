@@ -121,7 +121,9 @@ export const Recipe = ({index,recipe}) => {
                     <h3>Instructions:</h3>
                     <p style={{whiteSpace: "pre-wrap"}} className='description'>{description}</p> 
                     <h3 className='padding-top-bot-5'>Youtube tutorial:</h3>
+                    <div className='padding-top-bot-5'>
                     <YouTube videoId ={youtubeID} opts={opts}/>
+                    </div>
                     </div>
                 </div>
             ) }

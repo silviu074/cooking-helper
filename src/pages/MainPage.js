@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {  useState } from 'react'
 import { Navbar } from '../components/Navbar'
 import "../styles/MainPage.css"
 import { Recipe } from '../components/Recipe'
@@ -7,6 +7,7 @@ export const MainPage = ({recipes, areas, categories}) => {
 
   const [areaToRender, setAreaToRender] = useState([])
   const [categoryToRender, setCategoryToRender] = useState([])
+  const [search, setSearch] = useState(' ')
 
 
   // Area selection and render
@@ -45,42 +46,74 @@ export const MainPage = ({recipes, areas, categories}) => {
   })
 
 
+  // Search
+
+  
+  let searchResults = recipes.map( (recipe, index) => {
+    if(recipe?.strMeal.toLowerCase().includes(search?.toLowerCase()))
+    return(
+      <Recipe index={index} recipe={recipe}/>
+  )
+  })
+
 
   return (
     <React.Fragment>
       <Navbar/>
       <div className='mainpage-contianer'>
+      <div className='filters'>
+
+
+    {/* SEARCH */}
+    
+    <p>On this website you can find ~300 recipes. 
+      Use the following filters if you are looking for something specific:</p>
+
+    <div className='filterContent'>
+    <input className='input'
+      placeholder='Type recipe name' 
+      type='search' 
+      onChange={(e) => 
+      setSearch(e.target.value)}/>
+    </div>
+   
 
     {/* AREA */}
 
-      <div className='areaSelector'>
-      <label className='label'>Recipe origin:</label>
+      <div className='filterContent'>
+      {/* <label className='label'>Recipe origin:</label> */}
         <select className='select' onChange={(e) => {
           const areaValue = e.target.value
           setAreaToRender(areaValue)
+          setCategoryToRender(null)
+          setSearch(null)
         }}>
-          <option value='null'>Select here</option>
-          <option value='all'>All recipes</option>
+          <option value='null'>Country of Origin</option>
           {areaSelector}
         </select>
       </div>
-      <div className='areaRecipesToRender'>
-     {areaRecipesToRender}
-     </div>
+ 
 
     {/* CATEGORY */}
 
-      <div className='categorySelector'>
-      <label className='label'>Type of dish:</label>
+      <div className='filterContent'>
+      {/* <label className='label'>Type of dish:</label> */}
         <select className='select' onChange={(e) => {
           const categoryValue = e.target.value
+          setAreaToRender(null)
           setCategoryToRender(categoryValue)
+          setSearch(null)
         }}>
-          <option value='null'>Select here</option>
+          <option value='null'>Type of dish</option>
           {categorySelector}
         </select>
       </div>
-    <div className='categoryRecipesToRender'>
+      </div> 
+
+
+    <div className='recipesToRender'>
+      {searchResults}
+      {areaRecipesToRender}
       {categoryRecipesToRender}
     </div>
 
