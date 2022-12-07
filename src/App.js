@@ -5,10 +5,10 @@ import {
   Routes
 } from "react-router-dom";
 import axios from 'axios';
-import './App.css';
 import { MainPage } from './pages/MainPage';
 import { EasyRecipes } from './pages/EasyRecipes';
 import { Leftovers } from './pages/Leftovers';
+import './App.css';
 
 function App() {
 

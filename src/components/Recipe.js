@@ -17,10 +17,10 @@ export const Recipe = ({index,recipe}) => {
     function ingredientImageRender(ingredientsImage, i){
         let ingredientText = eval(`recipe.strIngredient${i}`)
         if((ingredientText !== "") && (ingredientText !== " ") && (ingredientText !== null) ) {
-            console.log(ingredientText)
+            // console.log(ingredientText)
             let textToSrc = ingredientText.replace(" ","%20")
             ingredientsImage[i] = `https://www.themealdb.com/images/ingredients/${textToSrc}.png`
-            console.log(ingredientsImage[i])
+            // console.log(ingredientsImage[i])
             return (<img 
                         className='ingredientImage' 
                         src={ingredientsImage[i]} 
@@ -34,7 +34,7 @@ export const Recipe = ({index,recipe}) => {
         let ingredientText = eval(`recipe.strIngredient${i}`)
             if((ingredientText !== "") && (ingredientText !== " ") && (ingredientText !== null)) {
                 ingredientsText[i] = ingredientText
-                console.log(ingredientsText[i])
+                // console.log(ingredientsText[i])
                 return (<p>{ingredientsText[i]}</p>)
             }
     }
@@ -45,7 +45,7 @@ export const Recipe = ({index,recipe}) => {
         let measureText = eval(`recipe.strMeasure${i}`)
         if((measureText !== "") && (measureText !== " ") && (measureText !== null)){
             measuresText[i] = measureText
-            console.log(measuresText[i])
+            // console.log(measuresText[i])
             return (<p>{measuresText[i]} of</p>)
         }
     }
@@ -69,8 +69,8 @@ export const Recipe = ({index,recipe}) => {
     // Extracting the ID from a youtube link and preparing the youtube-react component to render
 
     const youtubeID = recipe?.strYoutube.split("=")[1]
-    console.log(recipe?.strYoutube)
-    console.log(youtubeID)
+    // console.log(recipe?.strYoutube)
+    // console.log(youtubeID)
 
     const opts = {
         height: '400',
@@ -84,7 +84,7 @@ export const Recipe = ({index,recipe}) => {
     // Preparing the description of the recipe
 
     const description = recipe?.strInstructions
-    console.log(recipe?.idMeal)
+    // console.log(recipe?.idMeal)
 
     // Page rendering
 

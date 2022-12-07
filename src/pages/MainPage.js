@@ -1,6 +1,7 @@
 import React, {  useState } from 'react'
 import { Navbar } from '../components/Navbar'
 import "../styles/MainPage.css"
+import "../../src/App.css"
 import { Recipe } from '../components/Recipe'
 
 export const MainPage = ({recipes, areas, categories}) => {
@@ -86,7 +87,12 @@ export const MainPage = ({recipes, areas, categories}) => {
           const areaValue = e.target.value
           setAreaToRender(areaValue)
           setCategoryToRender(null)
-          setSearch(null)
+          console.log(areaToRender)
+          console.log(categoryToRender)
+          if((areaToRender === null) && (categoryToRender === null) ){ 
+            setSearch(' ') //if no filter is selected display all recipes
+          }
+          else setSearch(null)
         }}>
           <option value='null'>Country of Origin</option>
           {areaSelector}
@@ -102,7 +108,12 @@ export const MainPage = ({recipes, areas, categories}) => {
           const categoryValue = e.target.value
           setAreaToRender(null)
           setCategoryToRender(categoryValue)
-          setSearch(null)
+          console.log(areaToRender)
+          console.log(categoryToRender)
+          if((areaToRender === null) && (categoryToRender === null) ){ 
+            setSearch(' ') //if no filter is selected display all recipes
+          }
+          else setSearch(null)
         }}>
           <option value='null'>Type of dish</option>
           {categorySelector}
